@@ -1,5 +1,4 @@
-﻿using VendingMachine.Common;
-using VendingMachine.Common.Enums;
+﻿using VendingMachine.Common.Enums;
 
 namespace VendingMachine.Services
 {
@@ -8,11 +7,10 @@ namespace VendingMachine.Services
         #region Methods
 
         /// <summary>
-        /// Accepts a given <paramref name="coin" /> and returns the <see cref="CoinBox" />.
+        /// Accepts a given <paramref name="coin" />.
         /// </summary>
         /// <param name="coin">The <see cref="Coins" />.</param>
-        /// <returns>The <see cref="CoinBox" />.</returns>
-        CoinBox AcceptCoins(Coins? coin);
+        void AcceptCoins(Coins? coin);
 
         #endregion
     }

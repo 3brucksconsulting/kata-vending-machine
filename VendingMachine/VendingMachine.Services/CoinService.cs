@@ -1,34 +1,19 @@
-﻿using VendingMachine.Common;
-using VendingMachine.Common.Enums;
+﻿using VendingMachine.Common.Enums;
+using VendingMachine.Common.Helpers;
 
 namespace VendingMachine.Services
 {
     public class CoinService : ICoinService
     {
-        #region Fields
-
-        private CoinBox _coinBox;
-
-        #endregion
-
-        #region Constructors
-
-        public CoinService()
-        {
-            _coinBox = new CoinBox();
-        }
-
-        #endregion
-
         #region Methods
 
-        public CoinBox AcceptCoins(Coins? coin)
+        public void AcceptCoins(Coins? coin)
         {
             switch (coin)
             {
                 case Coins.Penny:
                 {
-                    _coinBox.AddReturnCoin(Coins.Penny);
+                    SessionHelper.AddReturnCoin(Coins.Penny);
 
                     break;
                 }
@@ -37,14 +22,11 @@ namespace VendingMachine.Services
                 case Coins.Dime:
                 case Coins.Quarter:
                 {
-                    _coinBox.AddCurrentCoin(coin.Value);
-                    _coinBox.AddTotalCoin(coin.Value);
-
+                    SessionHelper.AddCoin(coin.Value);
+                    
                     break;
                 }
             }
-
-            return _coinBox;
         }
 
         #endregion

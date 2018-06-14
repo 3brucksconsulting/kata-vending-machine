@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ValueAttribute.cs" />
-    <Compile Include="CoinBox.cs" />
+    <Compile Include="Constants\SessionConstants.cs" />
     <Compile Include="Enums\Coins.cs" />
+    <Compile Include="Enums\Products.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
