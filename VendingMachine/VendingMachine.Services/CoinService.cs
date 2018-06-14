@@ -9,9 +9,24 @@ namespace VendingMachine.Services
         {
             var coinBox = new CoinBox();
 
-            if (coin == Coins.Penny)
+            switch (coin)
             {
-                coinBox.AddReturnCoin(Coins.Penny);
+                case Coins.Penny:
+                {
+                    coinBox.AddReturnCoin(Coins.Penny);
+
+                    break;
+                }
+
+                case Coins.Nickel:
+                case Coins.Dime:
+                case Coins.Quarter:
+                {
+                    coinBox.AddCurrentCoin(coin.Value);
+                    coinBox.AddTotalCoin(coin.Value);
+
+                    break;
+                }
             }
 
             return coinBox;

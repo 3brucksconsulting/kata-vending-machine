@@ -61,11 +61,21 @@ namespace VendingMachine.Common
 
         #region Methods
 
+        public void AddCurrentCoin(Coins coin)
+        {
+            CurrentCoins = CurrentCoins + coin.ToValue();
+        }
+
         public void AddReturnCoin(Coins coin)
         {
             ReturnCoins = ReturnCoins + coin.ToValue();
         }
-        
+
+        public void AddTotalCoin(Coins coin)
+        {
+            TotalCoins = TotalCoins + coin.ToValue();
+        }
+
         public void Clear()
         {
             HttpContext.Current.Session.Clear();
