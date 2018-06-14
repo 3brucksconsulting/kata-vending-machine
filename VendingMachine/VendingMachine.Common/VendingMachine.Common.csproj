@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21CDD928-DFBC-4B03-A8D0-CF9CB0A2BA06}</ProjectGuid>
+    <ProjectGuid>{FBE17BC6-03C1-425B-AC17-8A02CE2DCC8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VendingMachine.Services</RootNamespace>
-    <AssemblyName>VendingMachine.Services</AssemblyName>
+    <RootNamespace>VendingMachine.Common</RootNamespace>
+    <AssemblyName>VendingMachine.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,15 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoinService.cs" />
-    <Compile Include="ICoinService.cs" />
+    <Compile Include="Attributes\ValueAttribute.cs" />
+    <Compile Include="CoinBox.cs" />
+    <Compile Include="Enums\Coins.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VendingMachine.Common\VendingMachine.Common.csproj">
-      <Project>{fbe17bc6-03c1-425b-ac17-8a02ce2dcc8f}</Project>
-      <Name>VendingMachine.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -211,6 +211,16 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.Common\VendingMachine.Common.csproj">
+      <Project>{fbe17bc6-03c1-425b-ac17-8a02ce2dcc8f}</Project>
+      <Name>VendingMachine.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VendingMachine.Services\VendingMachine.Services.csproj">
+      <Project>{21cdd928-dfbc-4b03-a8d0-cf9cb0a2ba06}</Project>
+      <Name>VendingMachine.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

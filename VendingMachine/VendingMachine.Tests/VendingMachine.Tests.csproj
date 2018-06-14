@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,11 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Helpers\MockHelprs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceTests\CoinServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ControllerTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.Common\VendingMachine.Common.csproj">
+      <Project>{fbe17bc6-03c1-425b-ac17-8a02ce2dcc8f}</Project>
+      <Name>VendingMachine.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VendingMachine.Services\VendingMachine.Services.csproj">
+      <Project>{21cdd928-dfbc-4b03-a8d0-cf9cb0a2ba06}</Project>
+      <Name>VendingMachine.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VendingMachine.UI\VendingMachine.UI.csproj">
+      <Project>{43b016b3-2d35-42df-a983-e88ffa668667}</Project>
+      <Name>VendingMachine.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
