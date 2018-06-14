@@ -12,8 +12,16 @@ namespace VendingMachine.Services
         public string SelectProduct(Products product)
         {
             var message = string.Empty;
+            var coins = SessionHelper.CurrentCoins.ToTotalValue();
+            var price = product.ToValue();
 
-            if (SessionHelper.CurrentCoins.ToTotalValue() < product.ToValue())
+            if (coins == price)
+            {
+                SessionHelper.UpdateInventory(product);
+
+                message = MessageConstants.ThankYou;
+            }
+            else if (coins < price)
             {
                 message = string.Format(MessageConstants.Price, product.ToValue());
             }

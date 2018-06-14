@@ -110,7 +110,7 @@ namespace VendingMachine.Common.Helpers
 
         public static void UpdateInventory(Products product)
         {
-            Inventory[product] = Inventory[product]--;
+            Inventory[product] = Inventory[product] - 1;
         }
 
         private static Dictionary<TEnum, int> InitializeDictionary<TEnum>(int value)

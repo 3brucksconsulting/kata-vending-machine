@@ -28,7 +28,7 @@ namespace VendingMachine.Tests.ServiceTests
 
             // SessionHelper
             SessionHelper.ClearAll();
-            
+
             _sut = new ProductService();
         }
 
@@ -41,13 +41,34 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            
+
             // Act
             var result = _sut.SelectProduct(product);
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(string.Format(MessageConstants.Price, product.ToValue()), result);
+        }
+
+        [Test]
+        public void SelectProduct_HavingExactCoins_GivenCandy_UpdatesInventoryAndReturnsThankYou()
+        {
+            // Arrange
+            const Products product = Products.Candy;
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Dime);
+            SessionHelper.AddCoin(Coins.Nickel);
+
+            // Act
+            var result = _sut.SelectProduct(product);
+
+            // Assert
+            Assert.AreEqual(2, SessionHelper.Inventory[Products.Candy]);
+            Assert.AreEqual(3, SessionHelper.Inventory[Products.Chips]);
+            Assert.AreEqual(3, SessionHelper.Inventory[Products.Cola]);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(MessageConstants.ThankYou, result);
         }
 
         #endregion
