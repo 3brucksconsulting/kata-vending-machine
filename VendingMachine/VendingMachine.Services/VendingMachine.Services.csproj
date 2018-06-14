@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductService.cs" />
     <Compile Include="CoinService.cs" />
+    <Compile Include="IProductService.cs" />
     <Compile Include="ICoinService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

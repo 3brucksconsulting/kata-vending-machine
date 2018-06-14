@@ -1,4 +1,6 @@
-﻿using VendingMachine.Common.Enums;
+﻿using VendingMachine.Common.Constants;
+using VendingMachine.Common.Enums;
+using VendingMachine.Common.Extensions;
 using VendingMachine.Common.Helpers;
 
 namespace VendingMachine.Services
@@ -7,7 +9,7 @@ namespace VendingMachine.Services
     {
         #region Methods
 
-        public void AcceptCoins(Coins? coin)
+        public string AcceptCoins(Coins? coin)
         {
             switch (coin)
             {
@@ -27,6 +29,10 @@ namespace VendingMachine.Services
                     break;
                 }
             }
+
+            var totalValue = SessionHelper.CurrentCoins.ToTotalValue();
+
+            return totalValue > decimal.Zero ? $"{totalValue:C2}" : MessageConstants.InsertCoin;
         }
 
         #endregion

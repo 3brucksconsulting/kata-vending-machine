@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using VendingMachine.Common.Constants;
 using VendingMachine.Common.Enums;
-using VendingMachine.Common.Extensions;
 
 namespace VendingMachine.Common.Helpers
 {
@@ -18,23 +17,10 @@ namespace VendingMachine.Common.Helpers
             {
                 if (Get<Dictionary<Coins, int>>(SessionConstants.CurrentCoins) == null)
                 {
-                    Set(SessionConstants.CurrentCoins, InitializeDictionary<Coins>());
+                    Set(SessionConstants.CurrentCoins, InitializeDictionary<Coins>(0));
                 }
 
                 return Get<Dictionary<Coins, int>>(SessionConstants.CurrentCoins);
-            }
-        }
-
-        public static string Message
-        {
-            get
-            {
-                if (CurrentCoins.ToTotalValue() == decimal.Zero)
-                {
-                    return SessionConstants.InsertCoin;
-                }
-
-                return string.Empty;
             }
         }
 
@@ -44,7 +30,7 @@ namespace VendingMachine.Common.Helpers
             {
                 if (Get<Dictionary<Products, int>>(SessionConstants.Inventory) == null)
                 {
-                    Set(SessionConstants.Inventory, InitializeDictionary<Products>());
+                    Set(SessionConstants.Inventory, InitializeDictionary<Products>(3));
                 }
 
                 return Get<Dictionary<Products, int>>(SessionConstants.Inventory);
@@ -58,7 +44,7 @@ namespace VendingMachine.Common.Helpers
             {
                 if (Get<Dictionary<Coins, int>>(SessionConstants.ReturnCoins) == null)
                 {
-                    Set(SessionConstants.ReturnCoins, InitializeDictionary<Coins>());
+                    Set(SessionConstants.ReturnCoins, InitializeDictionary<Coins>(0));
                 }
 
                 return Get<Dictionary<Coins, int>>(SessionConstants.ReturnCoins);
@@ -71,7 +57,7 @@ namespace VendingMachine.Common.Helpers
             {
                 if (Get<Dictionary<Coins, int>>(SessionConstants.TotalCoins) == null)
                 {
-                    Set(SessionConstants.TotalCoins, InitializeDictionary<Coins>());
+                    Set(SessionConstants.TotalCoins, InitializeDictionary<Coins>(0));
                 }
 
                 return Get<Dictionary<Coins, int>>(SessionConstants.TotalCoins);
@@ -127,16 +113,11 @@ namespace VendingMachine.Common.Helpers
             Inventory[product] = Inventory[product]--;
         }
 
-        private static Dictionary<TEnum, int> InitializeDictionary<TEnum>()
+        private static Dictionary<TEnum, int> InitializeDictionary<TEnum>(int value)
         {
-            var collection = new Dictionary<TEnum, int>();
-
-            foreach (var value in Enum.GetValues(typeof(TEnum)).Cast<TEnum>())
-            {
-                collection.Add(value, 0);
-            }
-
-            return collection;
+            return Enum.GetValues(typeof(TEnum))
+                .Cast<TEnum>()
+                .ToDictionary(item => item, item => value);
         }
 
         #endregion

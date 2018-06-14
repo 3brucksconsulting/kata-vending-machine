@@ -7,10 +7,11 @@ namespace VendingMachine.Services
         #region Methods
 
         /// <summary>
-        /// Accepts a given <paramref name="coin" />.
+        /// Accepts the given <paramref name="coin" /> and returns the appropriate message.
         /// </summary>
         /// <param name="coin">The <see cref="Coins" />.</param>
-        void AcceptCoins(Coins? coin);
+        /// <returns>The current coin amount if not empty; Otherwise INSERT COIN.</returns>
+        string AcceptCoins(Coins? coin);
 
         #endregion
     }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ValueAttribute.cs" />
+    <Compile Include="Constants\MessageConstants.cs" />
     <Compile Include="Constants\SessionConstants.cs" />
     <Compile Include="Enums\Coins.cs" />
     <Compile Include="Enums\Products.cs" />
