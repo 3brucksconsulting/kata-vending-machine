@@ -18,6 +18,19 @@ namespace VendingMachine.Common
             }
         }
 
+        public string Message
+        {
+            get
+            {
+                if (CurrentCoins == 0D)
+                {
+                    return Constants.InsertCoin;
+                }
+
+                return string.Empty;
+            }
+        }
+
         public double TotalCoins
         {
             get
@@ -63,6 +76,7 @@ namespace VendingMachine.Common
         public static class Constants
         {
             public const string CurrentCoins = "CurrentCoins";
+            public const string InsertCoin = "INSERT COIN";
             public const string TotalCoins = "TotalCoins";
         }
         

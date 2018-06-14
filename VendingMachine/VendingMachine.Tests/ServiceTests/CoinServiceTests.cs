@@ -51,6 +51,20 @@ namespace VendingMachine.Tests
             Assert.AreEqual(0D, result.TotalCoins);
         }
 
+        [Test]
+        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenNothing_Returns_InsertCoinMessage()
+        {
+            // Arrange
+            Coins? coin = null;
+
+            // Act
+            var result = _sut.AcceptCoins(coin);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(CoinBox.Constants.InsertCoin, result.Message);
+        }
+
         #endregion
     }
 }
