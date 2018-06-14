@@ -1,4 +1,6 @@
 ﻿using System.Web;
+using VendingMachine.Common.Enums;
+using VendingMachine.Common.Extensions;
 
 namespace VendingMachine.Common
 {
@@ -31,6 +33,18 @@ namespace VendingMachine.Common
             }
         }
 
+        public double ReturnCoins
+        {
+            get
+            {
+                return Get<double>(Constants.ReturnCoins);
+            }
+            set
+            {
+                Set(Constants.ReturnCoins, value);
+            }
+        }
+
         public double TotalCoins
         {
             get
@@ -47,6 +61,11 @@ namespace VendingMachine.Common
 
         #region Methods
 
+        public void AddReturnCoin(Coins coin)
+        {
+            ReturnCoins = ReturnCoins + coin.ToValue();
+        }
+        
         public void Clear()
         {
             HttpContext.Current.Session.Clear();
@@ -77,6 +96,7 @@ namespace VendingMachine.Common
         {
             public const string CurrentCoins = "CurrentCoins";
             public const string InsertCoin = "INSERT COIN";
+            public const string ReturnCoins = "ReturnCoins";
             public const string TotalCoins = "TotalCoins";
         }
         

@@ -7,7 +7,14 @@ namespace VendingMachine.Services
     {
         public CoinBox AcceptCoins(Coins? coin)
         {
-            return new CoinBox();
+            var coinBox = new CoinBox();
+
+            if (coin == Coins.Penny)
+            {
+                coinBox.AddReturnCoin(Coins.Penny);
+            }
+
+            return coinBox;
         }
     }
 }

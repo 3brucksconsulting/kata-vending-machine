@@ -2,6 +2,7 @@
 using System.Web;
 using VendingMachine.Common;
 using VendingMachine.Common.Enums;
+using VendingMachine.Common.Extensions;
 using VendingMachine.Services;
 using VendingMachine.Tests.Helpers;
 
@@ -52,7 +53,7 @@ namespace VendingMachine.Tests
         }
 
         [Test]
-        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenNothing_Returns_InsertCoinMessage()
+        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenNothing_ReturnsInsertCoinMessage()
         {
             // Arrange
             Coins? coin = null;
@@ -64,6 +65,24 @@ namespace VendingMachine.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(CoinBox.Constants.InsertCoin, result.Message);
         }
+
+        [Test]
+        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenPenny_AddsPennyToReturnCoins()
+        {
+            // Arrange
+            var coin = Coins.Penny;
+
+            // Act
+            var result = _sut.AcceptCoins(coin);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0D, result.CurrentCoins);
+            Assert.AreEqual(0D, result.TotalCoins);
+            Assert.AreEqual(coin.ToValue(), result.ReturnCoins);
+            Assert.AreEqual(CoinBox.Constants.InsertCoin, result.Message);
+        }
+
 
         #endregion
     }
