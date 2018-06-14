@@ -8,11 +8,11 @@ namespace VendingMachine.Common
     {
         #region Properties
 
-        public double CurrentCoins
+        public decimal CurrentCoins
         {
             get
             {
-                return Get<double>(Constants.CurrentCoins);
+                return Get<decimal>(Constants.CurrentCoins);
             }
             set
             {
@@ -24,7 +24,7 @@ namespace VendingMachine.Common
         {
             get
             {
-                if (CurrentCoins == 0D)
+                if (CurrentCoins == decimal.Zero)
                 {
                     return Constants.InsertCoin;
                 }
@@ -33,11 +33,11 @@ namespace VendingMachine.Common
             }
         }
 
-        public double ReturnCoins
+        public decimal ReturnCoins
         {
             get
             {
-                return Get<double>(Constants.ReturnCoins);
+                return Get<decimal>(Constants.ReturnCoins);
             }
             set
             {
@@ -45,11 +45,11 @@ namespace VendingMachine.Common
             }
         }
 
-        public double TotalCoins
+        public decimal TotalCoins
         {
             get
             {
-                return Get<double>(Constants.TotalCoins);
+                return Get<decimal>(Constants.TotalCoins);
             }
             set
             {

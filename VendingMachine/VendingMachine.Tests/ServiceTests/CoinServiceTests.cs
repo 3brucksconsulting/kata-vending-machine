@@ -134,6 +134,26 @@ namespace VendingMachine.Tests
             Assert.AreEqual(string.Empty, result.Message);
         }
 
+        [Test]
+        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenOneOfEachCoins_ReturnsCorrectCurrentTotalAndReturnCoins()
+        {
+            // Arrange
+            var totalCoins = .40D;
+
+            // Act
+            var result = _sut.AcceptCoins(Coins.Quarter);
+            result = _sut.AcceptCoins(Coins.Dime);
+            result = _sut.AcceptCoins(Coins.Nickel);
+            result = _sut.AcceptCoins(Coins.Penny);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(totalCoins, result.CurrentCoins);
+            Assert.AreEqual(totalCoins, result.TotalCoins);
+            Assert.AreEqual(Coins.Penny.ToValue(), result.ReturnCoins);
+            Assert.AreEqual(string.Empty, result.Message);
+        }
+
         #endregion
     }
 }

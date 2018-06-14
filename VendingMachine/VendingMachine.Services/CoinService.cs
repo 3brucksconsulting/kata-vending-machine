@@ -5,15 +5,30 @@ namespace VendingMachine.Services
 {
     public class CoinService : ICoinService
     {
+        #region Fields
+
+        private CoinBox _coinBox;
+
+        #endregion
+
+        #region Constructors
+
+        public CoinService()
+        {
+            _coinBox = new CoinBox();
+        }
+
+        #endregion
+
+        #region Methods
+
         public CoinBox AcceptCoins(Coins? coin)
         {
-            var coinBox = new CoinBox();
-
             switch (coin)
             {
                 case Coins.Penny:
                 {
-                    coinBox.AddReturnCoin(Coins.Penny);
+                    _coinBox.AddReturnCoin(Coins.Penny);
 
                     break;
                 }
@@ -22,14 +37,16 @@ namespace VendingMachine.Services
                 case Coins.Dime:
                 case Coins.Quarter:
                 {
-                    coinBox.AddCurrentCoin(coin.Value);
-                    coinBox.AddTotalCoin(coin.Value);
+                    _coinBox.AddCurrentCoin(coin.Value);
+                    _coinBox.AddTotalCoin(coin.Value);
 
                     break;
                 }
             }
 
-            return coinBox;
+            return _coinBox;
         }
+
+        #endregion
     }
 }

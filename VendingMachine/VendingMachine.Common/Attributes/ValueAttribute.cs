@@ -6,22 +6,22 @@ namespace VendingMachine.Common.Attributes
     {
         #region Fields
 
-        private readonly double _value;
+        private readonly decimal _value;
 
         #endregion
 
         #region Constructors
         
-        public ValueAttribute(double value)
+        public ValueAttribute(string value)
         {
-            _value = value;
+            _value = decimal.Parse(value);
         }
 
         #endregion
 
         #region Methods
 
-        public double ToValue()
+        public decimal ToValue()
         {
             return _value;
         }
