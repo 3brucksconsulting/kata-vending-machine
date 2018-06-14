@@ -63,7 +63,7 @@ namespace VendingMachine.Tests.ServiceTests
         public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenPenny_AddsPennyToReturnCoins()
         {
             // Arrange
-            var coin = Coins.Penny;
+            const Coins coin = Coins.Penny;
 
             // Act
             var result = _sut.AcceptCoins(coin);
@@ -81,7 +81,7 @@ namespace VendingMachine.Tests.ServiceTests
         public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenNickel_AddsNickelToCurrentAndTotalCoins()
         {
             // Arrange
-            var coin = Coins.Nickel;
+            const Coins coin = Coins.Nickel;
 
             // Act
             var result = _sut.AcceptCoins(coin);
@@ -101,7 +101,7 @@ namespace VendingMachine.Tests.ServiceTests
         public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenDime_AddsDimeToCurrentAndTotalCoins()
         {
             // Arrange
-            var coin = Coins.Dime;
+            const Coins coin = Coins.Dime;
 
             // Act
             var result = _sut.AcceptCoins(coin);
@@ -121,7 +121,7 @@ namespace VendingMachine.Tests.ServiceTests
         public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenQuarter_AddsQuarterToCurrentAndTotalCoins()
         {
             // Arrange
-            var coin = Coins.Quarter;
+            const Coins coin = Coins.Quarter;
 
             // Act
             var result = _sut.AcceptCoins(coin);

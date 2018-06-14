@@ -7,10 +7,10 @@ namespace VendingMachine.Services
         #region Methods
 
         /// <summary>
-        /// Selects a given <paramref name="product" />.
+        /// Selects a given <paramref name="product" /> returns the appropriate message.
         /// </summary>
-        /// <param name="product">The <see cref="Products" />.</param>
-        void SelectProduct(Products product);
+        // <returns>The appropriate message.</returns>
+        string SelectProduct(Products product);
 
         #endregion
     }

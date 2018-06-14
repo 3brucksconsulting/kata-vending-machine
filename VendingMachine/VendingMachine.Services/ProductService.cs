@@ -1,4 +1,7 @@
-﻿using VendingMachine.Common.Enums;
+﻿using VendingMachine.Common.Constants;
+using VendingMachine.Common.Enums;
+using VendingMachine.Common.Extensions;
+using VendingMachine.Common.Helpers;
 
 namespace VendingMachine.Services
 {
@@ -6,9 +9,16 @@ namespace VendingMachine.Services
     {
         #region Methods
 
-        public void SelectProduct(Products product)
+        public string SelectProduct(Products product)
         {
-            throw new System.NotImplementedException();
+            var message = string.Empty;
+
+            if (SessionHelper.CurrentCoins.ToTotalValue() < product.ToValue())
+            {
+                message = string.Format(MessageConstants.Price, product.ToValue());
+            }
+
+            return message;
         }
 
         #endregion

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Helpers\MockHelprs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceTests\ProductServiceTests.cs" />
     <Compile Include="ServiceTests\CoinServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
