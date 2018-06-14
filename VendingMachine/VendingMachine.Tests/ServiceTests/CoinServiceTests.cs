@@ -100,6 +100,23 @@ namespace VendingMachine.Tests
             Assert.AreEqual(string.Empty, result.Message);
         }
 
+        [Test]
+        public void AcceptCoins_HavingZeroCurrentAndTotalCoins_GivenDime_AddsDimeToCurrentAndTotalCoins()
+        {
+            // Arrange
+            var coin = Coins.Dime;
+
+            // Act
+            var result = _sut.AcceptCoins(coin);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(coin.ToValue(), result.CurrentCoins);
+            Assert.AreEqual(coin.ToValue(), result.TotalCoins);
+            Assert.AreEqual(0D, result.ReturnCoins);
+            Assert.AreEqual(string.Empty, result.Message);
+        }
+
         #endregion
     }
 }
