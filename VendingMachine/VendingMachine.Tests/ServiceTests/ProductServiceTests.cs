@@ -55,9 +55,9 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Dime);
 
             // Act
             var result = _sut.SelectProduct(product);
@@ -72,10 +72,10 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Dime);
-            SessionHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Nickel);
 
             // Act
             var result = _sut.SelectProduct(product);
@@ -95,18 +95,18 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Quarter);
-            SessionHelper.AddCoin(Coins.Dime);
-            SessionHelper.AddCoin(Coins.Dime);
-            SessionHelper.AddCoin(Coins.Dime);
-            SessionHelper.AddCoin(Coins.Dime);
-            SessionHelper.AddCoin(Coins.Nickel);
-            SessionHelper.AddCoin(Coins.Nickel);
-            SessionHelper.AddCoin(Coins.Nickel);
-            SessionHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Coins.Nickel);
 
             // Act
             var result = _sut.SelectProduct(product);

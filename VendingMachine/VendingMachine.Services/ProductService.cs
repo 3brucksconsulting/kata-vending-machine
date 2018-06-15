@@ -23,14 +23,14 @@ namespace VendingMachine.Services
             }
             else if (totalCoins == price)
             {
-                SessionHelper.UpdateInventory(product);
+                ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
                 message = MessageConstants.ThankYou;
             }
             else if (totalCoins > price)
             {
-                SessionHelper.UpdateInventory(product);
+                ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
                 CoinHelper.MakeChange(totalCoins, price);

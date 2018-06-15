@@ -9,6 +9,17 @@ namespace VendingMachine.Common.Helpers
     {
         #region Methods
 
+        public static void AddCoin(Coins coin)
+        {
+            SessionHelper.CurrentCoins[coin] = SessionHelper.CurrentCoins[coin] + 1;
+            SessionHelper.TotalCoins[coin] = SessionHelper.TotalCoins[coin] + 1;
+        }
+
+        public static void AddReturnCoin(Coins coin)
+        {
+            SessionHelper.ReturnCoins[coin] = SessionHelper.ReturnCoins[coin] + 1;
+        }
+
         public static void MakeChange(decimal totalCoins, decimal price)
         {
             var change = totalCoins - price;

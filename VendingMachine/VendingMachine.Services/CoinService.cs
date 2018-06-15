@@ -15,7 +15,7 @@ namespace VendingMachine.Services
             {
                 case Coins.Penny:
                 {
-                    SessionHelper.AddReturnCoin(Coins.Penny);
+                    CoinHelper.AddReturnCoin(Coins.Penny);
 
                     break;
                 }
@@ -24,7 +24,7 @@ namespace VendingMachine.Services
                 case Coins.Dime:
                 case Coins.Quarter:
                 {
-                    SessionHelper.AddCoin(coin.Value);
+                    CoinHelper.AddCoin(coin.Value);
                     
                     break;
                 }

@@ -69,17 +69,6 @@ namespace VendingMachine.Common.Helpers
 
         #region Methods
 
-        public static void AddCoin(Coins coin)
-        {
-            CurrentCoins[coin] = CurrentCoins[coin] + 1;
-            TotalCoins[coin] = TotalCoins[coin] + 1;
-        }
-
-        public static void AddReturnCoin(Coins coin)
-        {
-            ReturnCoins[coin] = ReturnCoins[coin] + 1;
-        }
-
         public static void ClearAll()
         {
             HttpContext.Current.Session.Clear();
@@ -106,11 +95,6 @@ namespace VendingMachine.Common.Helpers
         public static void Set(string key, object value)
         {
             HttpContext.Current.Session[key] = value;
-        }
-
-        public static void UpdateInventory(Products product)
-        {
-            Inventory[product] = Inventory[product] - 1;
         }
 
         private static Dictionary<TEnum, int> InitializeDictionary<TEnum>(int value)
