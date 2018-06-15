@@ -68,7 +68,7 @@ namespace VendingMachine.Tests.ServiceTests
         }
 
         [Test]
-        public void SelectProduct_HavingExactCoins_GivenCandy_UpdatesInventoryAndReturnsThankYou()
+        public void SelectProduct_HavingExactCoins_GivenCandy_UpdatesInventoryClearsCurrentCoinsAndReturnsThankYou()
         {
             // Arrange
             const Products product = Products.Candy;
@@ -84,6 +84,8 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual(2, SessionHelper.Inventory[Products.Candy]);
             Assert.AreEqual(3, SessionHelper.Inventory[Products.Chips]);
             Assert.AreEqual(3, SessionHelper.Inventory[Products.Cola]);
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(.65M, SessionHelper.TotalCoins.ToTotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ThankYou, result);
         }

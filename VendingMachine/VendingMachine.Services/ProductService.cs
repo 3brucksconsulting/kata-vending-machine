@@ -22,6 +22,7 @@ namespace VendingMachine.Services
             else if (totalCoins == price)
             {
                 SessionHelper.UpdateInventory(product);
+                SessionHelper.ClearCurrent();
 
                 message = MessageConstants.ThankYou;
             }
