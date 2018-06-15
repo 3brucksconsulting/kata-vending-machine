@@ -164,6 +164,32 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual($"{SessionHelper.CurrentCoins.ToTotalValue():C2}", result);
         }
 
+        [Test]
+        public void ReturnCoins_HavingVariousCoins_ClearsCurrentCoinsAndReturnsSameCoins()
+        {
+            // Arrange
+            const decimal totalCoins = .43M;
+
+            // Act
+            _sut.AcceptCoins(Coins.Quarter);
+            _sut.AcceptCoins(Coins.Dime);
+            _sut.AcceptCoins(Coins.Nickel);
+            _sut.AcceptCoins(Coins.Penny);
+            _sut.AcceptCoins(Coins.Penny);
+            _sut.AcceptCoins(Coins.Penny);
+            var result = _sut.ReturnCoins();
+
+            // Assert
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Quarter]);
+            Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Dime]);
+            Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Nickel]);
+            Assert.AreEqual(3, SessionHelper.ReturnCoins[Coins.Penny]);
+            Assert.AreEqual(totalCoins, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.IsNotNull(result);
+            Assert.AreEqual(MessageConstants.InsertCoin, result);
+        }
+
         #endregion
     }
 }

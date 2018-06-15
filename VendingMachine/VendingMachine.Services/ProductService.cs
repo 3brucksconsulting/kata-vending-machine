@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using VendingMachine.Common.Constants;
+﻿using VendingMachine.Common.Constants;
 using VendingMachine.Common.Enums;
 using VendingMachine.Common.Extensions;
 using VendingMachine.Common.Helpers;
@@ -44,8 +42,6 @@ namespace VendingMachine.Services
             
             return message;
         }
-
-       
 
         #endregion
     }
