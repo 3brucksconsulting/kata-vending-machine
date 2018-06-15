@@ -56,9 +56,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ControllerTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\VendingMachine.Common\VendingMachine.Common.csproj">
       <Project>{fbe17bc6-03c1-425b-ac17-8a02ce2dcc8f}</Project>

@@ -11,42 +11,54 @@ namespace VendingMachine.Services
 
         public string SelectProduct(Products product)
         {
-            var message = MessageConstants.SoldOut;
-
+            // Determine if product
             if (!ProductHelper.HasProduct(product))
             {
-                return message;
+                return MessageConstants.SoldOut;
             }
-            
+
             var currentCoins = SessionHelper.CurrentCoins.ToTotalValue();
             var price = product.ToValue();
 
+            // Calculate change
+            var change = CoinHelper.CalculateChange(currentCoins, price);
+            
+            // Determine if exact change
+            if (!CoinHelper.HasExactChange(change))
+            {
+                return MessageConstants.ExactChange;
+            }
+
+            // Determine if no coins
             if (currentCoins == decimal.Zero)
             {
-                message = MessageConstants.InsertCoin;
+                return MessageConstants.InsertCoin;
             }
-            else if (currentCoins == price)
+
+            // Determine if exact coins
+            if (currentCoins == price)
             {
                 ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
-                message = MessageConstants.ThankYou;
+                return MessageConstants.ThankYou;
             }
-            else if (currentCoins > price)
+
+            // Determine if more than enough coins
+            if (currentCoins > price)
             {
                 ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
-                CoinHelper.MakeChange(currentCoins, price);
+                CoinHelper.MakeChange(change);
 
-                message = MessageConstants.ThankYou;
+                return MessageConstants.ThankYou;
             }
-            else if (currentCoins < price)
-            {
-                message = string.Format(MessageConstants.Price, product.ToValue());
-            }
-            
-            return message;
+
+            // Determine if less than enough coins
+            return currentCoins < price 
+                ? string.Format(MessageConstants.Price, product.ToValue()) 
+                : string.Empty;
         }
 
         #endregion
