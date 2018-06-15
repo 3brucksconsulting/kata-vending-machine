@@ -14,9 +14,9 @@ namespace VendingMachine.Common.Extensions
         /// </summary>
         /// <param name="collection">The <see cref="Dictionary{TKey,TValue}"/>.</param>
         /// <returns>The total value.</returns>
-        public static decimal ToTotalValue(this Dictionary<Coins, int> collection)
+        public static decimal TotalValue(this Dictionary<Coins, int> collection)
         {
-            return collection.Sum(x => x.Key.ToValue() * x.Value);
+            return collection.Sum(x => x.Key.Value() * x.Value);
         }
     }
 }

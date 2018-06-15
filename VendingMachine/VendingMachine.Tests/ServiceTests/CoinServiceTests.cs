@@ -43,8 +43,8 @@ namespace VendingMachine.Tests.ServiceTests
             var result = _sut.AcceptCoins(null);
 
             // Assert
-            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
-            Assert.AreEqual(decimal.Zero, SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.TotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.TotalCoins.TotalValue());
             Assert.IsNotNull(result);
         }
 
@@ -69,10 +69,10 @@ namespace VendingMachine.Tests.ServiceTests
             var result = _sut.AcceptCoins(coin);
 
             // Assert
-            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
-            Assert.AreEqual(decimal.Zero, SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.TotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.ReturnCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.InsertCoin, result);
         }
@@ -88,13 +88,13 @@ namespace VendingMachine.Tests.ServiceTests
 
             // Assert
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins[coin]);
-            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
-            Assert.AreEqual($"{SessionHelper.CurrentCoins.ToTotalValue():C2}", result);
+            Assert.AreEqual($"{SessionHelper.CurrentCoins.TotalValue():C2}", result);
         }
 
         [Test]
@@ -108,13 +108,13 @@ namespace VendingMachine.Tests.ServiceTests
 
             // Assert
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins[coin]);
-            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
-            Assert.AreEqual($"{SessionHelper.CurrentCoins.ToTotalValue():C2}", result);
+            Assert.AreEqual($"{SessionHelper.CurrentCoins.TotalValue():C2}", result);
         }
 
         [Test]
@@ -128,13 +128,13 @@ namespace VendingMachine.Tests.ServiceTests
 
             // Assert
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[coin]);
-            Assert.AreEqual(coin.ToValue(), SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(coin.Value(), SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins[coin]);
-            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
-            Assert.AreEqual($"{SessionHelper.CurrentCoins.ToTotalValue():C2}", result);
+            Assert.AreEqual($"{SessionHelper.CurrentCoins.TotalValue():C2}", result);
         }
 
         [Test]
@@ -153,15 +153,15 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[Coins.Quarter]);
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[Coins.Dime]);
             Assert.AreEqual(decimal.One, SessionHelper.CurrentCoins[Coins.Nickel]);
-            Assert.AreEqual(totalCoins, SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(totalCoins, SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[Coins.Quarter]);
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[Coins.Dime]);
             Assert.AreEqual(decimal.One, SessionHelper.TotalCoins[Coins.Nickel]);
-            Assert.AreEqual(totalCoins, SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(totalCoins, SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.One, SessionHelper.ReturnCoins[Coins.Penny]);
-            Assert.AreEqual(Coins.Penny.ToValue(), SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(Coins.Penny.Value(), SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
-            Assert.AreEqual($"{SessionHelper.CurrentCoins.ToTotalValue():C2}", result);
+            Assert.AreEqual($"{SessionHelper.CurrentCoins.TotalValue():C2}", result);
         }
 
         [Test]
@@ -180,12 +180,12 @@ namespace VendingMachine.Tests.ServiceTests
             var result = _sut.ReturnCoins();
 
             // Assert
-            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Quarter]);
             Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Dime]);
             Assert.AreEqual(1, SessionHelper.ReturnCoins[Coins.Nickel]);
             Assert.AreEqual(3, SessionHelper.ReturnCoins[Coins.Penny]);
-            Assert.AreEqual(totalCoins, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(totalCoins, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.InsertCoin, result);
         }

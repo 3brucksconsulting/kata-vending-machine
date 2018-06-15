@@ -64,7 +64,7 @@ namespace VendingMachine.Tests.ServiceTests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(string.Format(MessageConstants.Price, product.ToValue()), result);
+            Assert.AreEqual(string.Format(MessageConstants.Price, product.Price()), result);
         }
 
         [Test]
@@ -84,8 +84,8 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual(2, SessionHelper.Inventory[Products.Candy]);
             Assert.AreEqual(3, SessionHelper.Inventory[Products.Chips]);
             Assert.AreEqual(3, SessionHelper.Inventory[Products.Cola]);
-            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.ToTotalValue());
-            Assert.AreEqual(.65M, SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.CurrentCoins.TotalValue());
+            Assert.AreEqual(.65M, SessionHelper.TotalCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ThankYou, result);
         }
@@ -114,7 +114,7 @@ namespace VendingMachine.Tests.ServiceTests
             // Assert
             Assert.AreEqual(3, SessionHelper.ReturnCoins[Coins.Quarter]);
             Assert.AreEqual(2, SessionHelper.ReturnCoins[Coins.Dime]);
-            Assert.AreEqual(.95M, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(.95M, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ThankYou, result);
         }
@@ -137,12 +137,12 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual(2, SessionHelper.CurrentCoins[Coins.Quarter]);
             Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Dime]);
             Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Nickel]);
-            Assert.AreEqual(Products.Candy.ToValue(), SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(Products.Candy.Price(), SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(2, SessionHelper.TotalCoins[Coins.Quarter]);
             Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Dime]);
             Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Nickel]);
-            Assert.AreEqual(Products.Candy.ToValue(), SessionHelper.TotalCoins.ToTotalValue());
-            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(Products.Candy.Price(), SessionHelper.TotalCoins.TotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.SoldOut, result);
         }
@@ -161,10 +161,10 @@ namespace VendingMachine.Tests.ServiceTests
 
             // Assert
             Assert.AreEqual(3, SessionHelper.CurrentCoins[Coins.Quarter]);
-            Assert.AreEqual(.75M, SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(.75M, SessionHelper.CurrentCoins.TotalValue());
             Assert.AreEqual(3, SessionHelper.TotalCoins[Coins.Quarter]);
-            Assert.AreEqual(.75M, SessionHelper.TotalCoins.ToTotalValue());
-            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.AreEqual(.75M, SessionHelper.TotalCoins.TotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ExactChange, result);
         }

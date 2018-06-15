@@ -9,11 +9,27 @@ namespace VendingMachine.Common.Extensions
     public static class EnumExtensions
     {
         /// <summary>
+        /// Converts an <see cref="Enum" /> value to its equivalant price if available.
+        /// </summary>
+        /// <param name="value">The <see cref="Enum" /> value.</param>
+        /// <returns>The price if set; Otherwise zero.</returns>
+        public static decimal Price(this Enum value)
+        {
+            var type = value.GetType();
+            var field = type.GetField(value.ToString());
+            var attributes = field.GetCustomAttributes(typeof(PriceAttribute), false);
+
+            return attributes.Length == 0
+                ? decimal.Zero
+                : ((PriceAttribute)attributes[0]).ToValue();
+        }
+
+        /// <summary>
         /// Converts an <see cref="Enum" /> value to its equivalant value if available.
         /// </summary>
         /// <param name="value">The <see cref="Enum" /> value.</param>
         /// <returns>The value if set; Otherwise zero.</returns>
-        public static decimal ToValue(this Enum value)
+        public static decimal Value(this Enum value)
         {
             var type = value.GetType();
             var field = type.GetField(value.ToString());

@@ -4,13 +4,13 @@ namespace VendingMachine.Common.Enums
 {
     public enum Products
     {
-        [Value("1.00")]
+        [Price("1.00")]
         Cola,
 
-        [Value(".50")]
+        [Price(".50")]
         Chips,
 
-        [Value(".65")]
+        [Price(".65")]
         Candy
     }
 }

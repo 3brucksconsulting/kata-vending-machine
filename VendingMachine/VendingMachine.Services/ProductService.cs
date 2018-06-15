@@ -17,8 +17,8 @@ namespace VendingMachine.Services
                 return MessageConstants.SoldOut;
             }
 
-            var currentCoins = SessionHelper.CurrentCoins.ToTotalValue();
-            var price = product.ToValue();
+            var currentCoins = SessionHelper.CurrentCoins.TotalValue();
+            var price = product.Price();
 
             // Calculate change
             var change = CoinHelper.CalculateChange(currentCoins, price);
@@ -39,8 +39,7 @@ namespace VendingMachine.Services
             if (currentCoins == price)
             {
                 ProductHelper.UpdateInventory(product);
-                SessionHelper.ClearCurrent();
-
+                
                 return MessageConstants.ThankYou;
             }
 
@@ -48,8 +47,6 @@ namespace VendingMachine.Services
             if (currentCoins > price)
             {
                 ProductHelper.UpdateInventory(product);
-                SessionHelper.ClearCurrent();
-
                 CoinHelper.MakeChange(change);
 
                 return MessageConstants.ThankYou;
@@ -57,7 +54,7 @@ namespace VendingMachine.Services
 
             // Determine if less than enough coins
             return currentCoins < price 
-                ? string.Format(MessageConstants.Price, product.ToValue()) 
+                ? string.Format(MessageConstants.Price, product.Price()) 
                 : string.Empty;
         }
 

@@ -71,12 +71,16 @@ namespace VendingMachine.Common.Helpers
 
         public static void ClearAll()
         {
+            // Clear session
             HttpContext.Current.Session.Clear();
         }
 
         public static void ClearCurrent()
         {
+            // Clear current coins
             HttpContext.Current.Session.Remove(SessionConstants.CurrentCoins);
+
+            // Clear return coins
             HttpContext.Current.Session.Remove(SessionConstants.ReturnCoins);
         }
         
@@ -84,6 +88,7 @@ namespace VendingMachine.Common.Helpers
         {
             object value = null;
 
+            // attempt to retrieve item value
             if (HttpContext.Current.Session[key] != null)
             {
                 value = HttpContext.Current.Session[key];
@@ -94,11 +99,13 @@ namespace VendingMachine.Common.Helpers
 
         public static void Set(string key, object value)
         {
+            // Set item value
             HttpContext.Current.Session[key] = value;
         }
 
         private static Dictionary<TEnum, int> InitializeDictionary<TEnum>(int value)
         {
+            // Initialize collection
             return Enum.GetValues(typeof(TEnum))
                 .Cast<TEnum>()
                 .ToDictionary(x => x, y => value);

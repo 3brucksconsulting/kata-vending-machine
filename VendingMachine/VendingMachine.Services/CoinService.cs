@@ -32,7 +32,7 @@ namespace VendingMachine.Services
                 }
             }
 
-            var totalValue = SessionHelper.CurrentCoins.ToTotalValue();
+            var totalValue = SessionHelper.CurrentCoins.TotalValue();
 
             return totalValue > decimal.Zero ? $"{totalValue:C2}" : MessageConstants.InsertCoin;
         }
