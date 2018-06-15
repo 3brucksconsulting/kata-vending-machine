@@ -37,10 +37,27 @@ namespace VendingMachine.Tests.ServiceTests
         #region Tests
 
         [Test]
-        public void SelectProduct_NotHavingEnoughCoins_GivenCandy_ReturnsCandyPrice()
+        public void SelectProduct_HavingNoCoins_GivenCandy_ReturnsInsertCoin()
         {
             // Arrange
             const Products product = Products.Candy;
+
+            // Act
+            var result = _sut.SelectProduct(product);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(MessageConstants.InsertCoin, result);
+        }
+
+        [Test]
+        public void SelectProduct_HavingNotEnoughCoins_GivenCandy_ReturnsCandyPrice()
+        {
+            // Arrange
+            const Products product = Products.Candy;
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Dime);
 
             // Act
             var result = _sut.SelectProduct(product);
