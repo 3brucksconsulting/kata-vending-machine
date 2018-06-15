@@ -11,31 +11,37 @@ namespace VendingMachine.Services
 
         public string SelectProduct(Products product)
         {
-            var message = string.Empty;
-            var totalCoins = SessionHelper.CurrentCoins.ToTotalValue();
+            var message = MessageConstants.SoldOut;
+
+            if (!ProductHelper.HasProduct(product))
+            {
+                return message;
+            }
+            
+            var currentCoins = SessionHelper.CurrentCoins.ToTotalValue();
             var price = product.ToValue();
 
-            if (totalCoins == decimal.Zero)
+            if (currentCoins == decimal.Zero)
             {
                 message = MessageConstants.InsertCoin;
             }
-            else if (totalCoins == price)
+            else if (currentCoins == price)
             {
                 ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
                 message = MessageConstants.ThankYou;
             }
-            else if (totalCoins > price)
+            else if (currentCoins > price)
             {
                 ProductHelper.UpdateInventory(product);
                 SessionHelper.ClearCurrent();
 
-                CoinHelper.MakeChange(totalCoins, price);
+                CoinHelper.MakeChange(currentCoins, price);
 
                 message = MessageConstants.ThankYou;
             }
-            else if (totalCoins < price)
+            else if (currentCoins < price)
             {
                 message = string.Format(MessageConstants.Price, product.ToValue());
             }

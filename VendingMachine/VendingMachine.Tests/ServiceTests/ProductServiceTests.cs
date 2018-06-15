@@ -118,6 +118,35 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ThankYou, result);
         }
+
+        [Test]
+        public void SelectProduct_HavingSoldOutCandy_GivenCandy_ReturnsCoins()
+        {
+            // Arrange
+            const Products product = Products.Candy;
+            SessionHelper.Inventory[product] = 0;
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Coins.Nickel);
+
+            // Act
+            var result = _sut.SelectProduct(product);
+
+            // Assert
+            Assert.AreEqual(2, SessionHelper.CurrentCoins[Coins.Quarter]);
+            Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Dime]);
+            Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Nickel]);
+            Assert.AreEqual(Products.Candy.ToValue(), SessionHelper.CurrentCoins.ToTotalValue());
+            Assert.AreEqual(2, SessionHelper.TotalCoins[Coins.Quarter]);
+            Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Dime]);
+            Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Nickel]);
+            Assert.AreEqual(Products.Candy.ToValue(), SessionHelper.TotalCoins.ToTotalValue());
+            Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.IsNotNull(result);
+            Assert.AreEqual(MessageConstants.SoldOut, result);
+        }
+
         #endregion
     }
 }
