@@ -4,16 +4,16 @@ namespace VendingMachine.Common.Enums
 {
     public enum Coins
     {
-        [Value(".01")]
-        Penny,
-
-        [Value(".05")]
-        Nickel,
+        [Value(".25")]
+        Quarter,
 
         [Value(".10")]
         Dime,
 
-        [Value(".25")]
-        Quarter
+        [Value(".05")]
+        Nickel,
+
+        [Value(".01")]
+        Penny
     }
 }

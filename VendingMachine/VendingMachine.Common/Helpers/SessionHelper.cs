@@ -117,7 +117,7 @@ namespace VendingMachine.Common.Helpers
         {
             return Enum.GetValues(typeof(TEnum))
                 .Cast<TEnum>()
-                .ToDictionary(item => item, item => value);
+                .ToDictionary(x => x, y => value);
         }
 
         #endregion

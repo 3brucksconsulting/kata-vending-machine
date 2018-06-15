@@ -90,6 +90,34 @@ namespace VendingMachine.Tests.ServiceTests
             Assert.AreEqual(MessageConstants.ThankYou, result);
         }
 
+        [Test]
+        public void SelectProduct_HavingMoreThanEnoughCoins_GivenCandy_ReturnsCoins()
+        {
+            // Arrange
+            const Products product = Products.Candy;
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Quarter);
+            SessionHelper.AddCoin(Coins.Dime);
+            SessionHelper.AddCoin(Coins.Dime);
+            SessionHelper.AddCoin(Coins.Dime);
+            SessionHelper.AddCoin(Coins.Dime);
+            SessionHelper.AddCoin(Coins.Nickel);
+            SessionHelper.AddCoin(Coins.Nickel);
+            SessionHelper.AddCoin(Coins.Nickel);
+            SessionHelper.AddCoin(Coins.Nickel);
+
+            // Act
+            var result = _sut.SelectProduct(product);
+
+            // Assert
+            Assert.AreEqual(3, SessionHelper.ReturnCoins[Coins.Quarter]);
+            Assert.AreEqual(2, SessionHelper.ReturnCoins[Coins.Dime]);
+            Assert.AreEqual(.95M, SessionHelper.ReturnCoins.ToTotalValue());
+            Assert.IsNotNull(result);
+            Assert.AreEqual(MessageConstants.ThankYou, result);
+        }
         #endregion
     }
 }

@@ -1,4 +1,6 @@
-﻿using VendingMachine.Common.Constants;
+﻿using System;
+using System.Linq;
+using VendingMachine.Common.Constants;
 using VendingMachine.Common.Enums;
 using VendingMachine.Common.Extensions;
 using VendingMachine.Common.Helpers;
@@ -26,6 +28,15 @@ namespace VendingMachine.Services
 
                 message = MessageConstants.ThankYou;
             }
+            else if (totalCoins > price)
+            {
+                SessionHelper.UpdateInventory(product);
+                SessionHelper.ClearCurrent();
+
+                CoinHelper.MakeChange(totalCoins, price);
+
+                message = MessageConstants.ThankYou;
+            }
             else if (totalCoins < price)
             {
                 message = string.Format(MessageConstants.Price, product.ToValue());
@@ -33,6 +44,8 @@ namespace VendingMachine.Services
             
             return message;
         }
+
+       
 
         #endregion
     }
