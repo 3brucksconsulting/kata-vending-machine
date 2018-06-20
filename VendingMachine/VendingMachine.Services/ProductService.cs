@@ -11,12 +11,18 @@ namespace VendingMachine.Services
 
         public string SelectProduct(Products product)
         {
-            // Determine if product
-            if (!ProductHelper.HasProduct(product))
+            var message = CheckInventory(product);
+
+            if (message != MessageConstants.SoldOut)
             {
-                return MessageConstants.SoldOut;
+                message = CheckCoins(product);
             }
 
+            return message;
+        }
+
+        private static string CheckCoins(Products product)
+        {
             var currentCoins = SessionHelper.CurrentCoins.TotalValue();
             var price = product.Price();
 
@@ -40,7 +46,6 @@ namespace VendingMachine.Services
                 return MessageConstants.ThankYou;
             }
 
-            // Calculate change
             var change = CoinHelper.CalculateChange(currentCoins, price);
 
             // Determine if exact change
@@ -59,6 +64,11 @@ namespace VendingMachine.Services
             }
 
             return string.Empty;
+        }
+
+        private static string CheckInventory(Products product)
+        {
+            return ProductHelper.HasProduct(product) ? string.Empty : MessageConstants.SoldOut;
         }
 
         #endregion
