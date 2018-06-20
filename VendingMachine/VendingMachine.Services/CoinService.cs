@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using VendingMachine.Common.Classes;
 using VendingMachine.Common.Constants;
 using VendingMachine.Common.Enums;
 using VendingMachine.Common.Extensions;
@@ -11,23 +12,26 @@ namespace VendingMachine.Services
     {
         #region Methods
 
-        public string AcceptCoins(Coins? coin)
+        public string AcceptCoins(Coin coin)
         {
-            switch (coin)
+            coin.Denomination = DetermineDenomination(coin);
+
+            switch (coin.Denomination)
             {
-                case Coins.Penny:
+                case Denominations.Penny:
+                case Denominations.Unknown:
                 {
-                    CoinHelper.AddReturnCoin(Coins.Penny);
+                    CoinHelper.AddReturnCoin(coin.Denomination);
 
                     break;
                 }
 
-                case Coins.Nickel:
-                case Coins.Dime:
-                case Coins.Quarter:
+                case Denominations.Nickel:
+                case Denominations.Dime:
+                case Denominations.Quarter:
                 {
-                    CoinHelper.AddCoin(coin.Value);
-                    
+                    CoinHelper.AddCoin(coin.Denomination);
+
                     break;
                 }
             }
@@ -39,19 +43,44 @@ namespace VendingMachine.Services
 
         public string ReturnCoins()
         {
-            foreach (var coin in Enum.GetValues(typeof(Coins)).Cast<Coins>())
+            foreach (var coin in Enum.GetValues(typeof(Denominations)).Cast<Denominations>())
             {
-                // Skip pennies as they are already in return
-                if (coin == Coins.Penny)
+                // Skip pennies and unknown coins as they are already in return
+                if (coin == Denominations.Penny || coin == Denominations.Unknown)
                 {
                     continue;
                 }
 
                 SessionHelper.ReturnCoins[coin] = SessionHelper.CurrentCoins[coin];
+                SessionHelper.TotalCoins[coin] = SessionHelper.TotalCoins[coin] - SessionHelper.CurrentCoins[coin];
                 SessionHelper.CurrentCoins[coin] = 0;
             }
 
             return MessageConstants.InsertCoin;
+        }
+
+        private static Denominations DetermineDenomination(Coin coin)
+        {
+            var denomination = Denominations.Unknown;
+
+            if (coin.Weight == WeightConstants.Quarter && coin.Diameter == DiameterConstants.Quarter)
+            {
+                denomination = Denominations.Quarter;
+            }
+            else if (coin.Weight == WeightConstants.Dime && coin.Diameter == DiameterConstants.Dime)
+            {
+                denomination = Denominations.Dime;
+            }
+            else if (coin.Weight == WeightConstants.Nickle && coin.Diameter == DiameterConstants.Nickle)
+            {
+                denomination = Denominations.Nickel;
+            }
+            else if (coin.Weight == WeightConstants.Penny && coin.Diameter == DiameterConstants.Penny)
+            {
+                denomination = Denominations.Penny;
+            }
+
+            return denomination;
         }
 
         #endregion

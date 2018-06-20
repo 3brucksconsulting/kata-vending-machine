@@ -55,9 +55,9 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Dime);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Dime);
 
             // Act
             var result = _sut.SelectProduct(product);
@@ -72,10 +72,10 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Nickel);
 
             // Act
             var result = _sut.SelectProduct(product);
@@ -95,25 +95,25 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Nickel);
-            CoinHelper.AddCoin(Coins.Nickel);
-            CoinHelper.AddCoin(Coins.Nickel);
-            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Nickel);
+            CoinHelper.AddCoin(Denominations.Nickel);
+            CoinHelper.AddCoin(Denominations.Nickel);
+            CoinHelper.AddCoin(Denominations.Nickel);
 
             // Act
             var result = _sut.SelectProduct(product);
 
             // Assert
-            Assert.AreEqual(3, SessionHelper.ReturnCoins[Coins.Quarter]);
-            Assert.AreEqual(2, SessionHelper.ReturnCoins[Coins.Dime]);
+            Assert.AreEqual(3, SessionHelper.ReturnCoins[Denominations.Quarter]);
+            Assert.AreEqual(2, SessionHelper.ReturnCoins[Denominations.Dime]);
             Assert.AreEqual(.95M, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
             Assert.AreEqual(MessageConstants.ThankYou, result);
@@ -125,22 +125,22 @@ namespace VendingMachine.Tests.ServiceTests
             // Arrange
             const Products product = Products.Candy;
             SessionHelper.Inventory[product] = 0;
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Dime);
-            CoinHelper.AddCoin(Coins.Nickel);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Dime);
+            CoinHelper.AddCoin(Denominations.Nickel);
 
             // Act
             var result = _sut.SelectProduct(product);
 
             // Assert
-            Assert.AreEqual(2, SessionHelper.CurrentCoins[Coins.Quarter]);
-            Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Dime]);
-            Assert.AreEqual(1, SessionHelper.CurrentCoins[Coins.Nickel]);
+            Assert.AreEqual(2, SessionHelper.CurrentCoins[Denominations.Quarter]);
+            Assert.AreEqual(1, SessionHelper.CurrentCoins[Denominations.Dime]);
+            Assert.AreEqual(1, SessionHelper.CurrentCoins[Denominations.Nickel]);
             Assert.AreEqual(Products.Candy.Price(), SessionHelper.CurrentCoins.TotalValue());
-            Assert.AreEqual(2, SessionHelper.TotalCoins[Coins.Quarter]);
-            Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Dime]);
-            Assert.AreEqual(1, SessionHelper.TotalCoins[Coins.Nickel]);
+            Assert.AreEqual(2, SessionHelper.TotalCoins[Denominations.Quarter]);
+            Assert.AreEqual(1, SessionHelper.TotalCoins[Denominations.Dime]);
+            Assert.AreEqual(1, SessionHelper.TotalCoins[Denominations.Nickel]);
             Assert.AreEqual(Products.Candy.Price(), SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);
@@ -152,17 +152,17 @@ namespace VendingMachine.Tests.ServiceTests
         {
             // Arrange
             const Products product = Products.Candy;
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
-            CoinHelper.AddCoin(Coins.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
+            CoinHelper.AddCoin(Denominations.Quarter);
 
             // Act
             var result = _sut.SelectProduct(product);
 
             // Assert
-            Assert.AreEqual(3, SessionHelper.CurrentCoins[Coins.Quarter]);
+            Assert.AreEqual(3, SessionHelper.CurrentCoins[Denominations.Quarter]);
             Assert.AreEqual(.75M, SessionHelper.CurrentCoins.TotalValue());
-            Assert.AreEqual(3, SessionHelper.TotalCoins[Coins.Quarter]);
+            Assert.AreEqual(3, SessionHelper.TotalCoins[Denominations.Quarter]);
             Assert.AreEqual(.75M, SessionHelper.TotalCoins.TotalValue());
             Assert.AreEqual(decimal.Zero, SessionHelper.ReturnCoins.TotalValue());
             Assert.IsNotNull(result);

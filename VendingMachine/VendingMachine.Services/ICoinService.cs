@@ -1,4 +1,4 @@
-﻿using VendingMachine.Common.Enums;
+﻿using VendingMachine.Common.Classes;
 
 namespace VendingMachine.Services
 {
@@ -9,9 +9,9 @@ namespace VendingMachine.Services
         /// <summary>
         /// Accepts the given <paramref name="coin" /> and returns the appropriate message.
         /// </summary>
-        /// <param name="coin">The <see cref="Coins" />.</param>
+        /// <param name="coin">The <see cref="Coin" />.</param>
         /// <returns>The current coin amount if not empty; Otherwise INSERT COIN.</returns>
-        string AcceptCoins(Coins? coin);
+        string AcceptCoins(Coin coin);
 
         /// <summary>
         /// Moves all current coins to the return coins and returns the appropriate message.

@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Attributes\PriceAttribute.cs" />
     <Compile Include="Attributes\ValueAttribute.cs" />
+    <Compile Include="Classes\Coin.cs" />
+    <Compile Include="Constants\DiameterConstants.cs" />
+    <Compile Include="Constants\WeightConstants.cs" />
     <Compile Include="Constants\MessageConstants.cs" />
     <Compile Include="Constants\SessionConstants.cs" />
-    <Compile Include="Enums\Coins.cs" />
+    <Compile Include="Enums\Denominations.cs" />
     <Compile Include="Enums\Products.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

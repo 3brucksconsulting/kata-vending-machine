@@ -20,27 +20,33 @@ namespace VendingMachine.Services
             var currentCoins = SessionHelper.CurrentCoins.TotalValue();
             var price = product.Price();
 
-            // Calculate change
-            var change = CoinHelper.CalculateChange(currentCoins, price);
-            
-            // Determine if exact change
-            if (!CoinHelper.HasExactChange(change))
-            {
-                return MessageConstants.ExactChange;
-            }
-
             // Determine if no coins
             if (currentCoins == decimal.Zero)
             {
                 return MessageConstants.InsertCoin;
             }
 
+            // Determine if less than enough coins
+            if (currentCoins < price)
+            {
+                return string.Format(MessageConstants.Price, product.Price());
+            }
+
             // Determine if exact coins
             if (currentCoins == price)
             {
                 ProductHelper.UpdateInventory(product);
-                
+
                 return MessageConstants.ThankYou;
+            }
+
+            // Calculate change
+            var change = CoinHelper.CalculateChange(currentCoins, price);
+
+            // Determine if exact change
+            if (!CoinHelper.HasExactChange(change))
+            {
+                return MessageConstants.ExactChange;
             }
 
             // Determine if more than enough coins
@@ -52,10 +58,7 @@ namespace VendingMachine.Services
                 return MessageConstants.ThankYou;
             }
 
-            // Determine if less than enough coins
-            return currentCoins < price 
-                ? string.Format(MessageConstants.Price, product.Price()) 
-                : string.Empty;
+            return string.Empty;
         }
 
         #endregion

@@ -2,7 +2,7 @@
 
 namespace VendingMachine.Common.Enums
 {
-    public enum Coins
+    public enum Denominations
     {
         [Value(".25")]
         Quarter,
@@ -14,6 +14,8 @@ namespace VendingMachine.Common.Enums
         Nickel,
 
         [Value(".01")]
-        Penny
+        Penny,
+
+        Unknown
     }
 }

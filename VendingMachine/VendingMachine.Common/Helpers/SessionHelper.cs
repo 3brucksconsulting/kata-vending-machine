@@ -11,16 +11,16 @@ namespace VendingMachine.Common.Helpers
     {
         #region Properties
 
-        public static Dictionary<Coins, int> CurrentCoins
+        public static Dictionary<Denominations, int> CurrentCoins
         {
             get
             {
-                if (Get<Dictionary<Coins, int>>(SessionConstants.CurrentCoins) == null)
+                if (Get<Dictionary<Denominations, int>>(SessionConstants.CurrentCoins) == null)
                 {
-                    Set(SessionConstants.CurrentCoins, InitializeDictionary<Coins>(0));
+                    Set(SessionConstants.CurrentCoins, InitializeDictionary<Denominations>(0));
                 }
 
-                return Get<Dictionary<Coins, int>>(SessionConstants.CurrentCoins);
+                return Get<Dictionary<Denominations, int>>(SessionConstants.CurrentCoins);
             }
         }
 
@@ -38,29 +38,29 @@ namespace VendingMachine.Common.Helpers
 
         }
 
-        public static Dictionary<Coins, int> ReturnCoins
+        public static Dictionary<Denominations, int> ReturnCoins
         {
             get
             {
-                if (Get<Dictionary<Coins, int>>(SessionConstants.ReturnCoins) == null)
+                if (Get<Dictionary<Denominations, int>>(SessionConstants.ReturnCoins) == null)
                 {
-                    Set(SessionConstants.ReturnCoins, InitializeDictionary<Coins>(0));
+                    Set(SessionConstants.ReturnCoins, InitializeDictionary<Denominations>(0));
                 }
 
-                return Get<Dictionary<Coins, int>>(SessionConstants.ReturnCoins);
+                return Get<Dictionary<Denominations, int>>(SessionConstants.ReturnCoins);
             }
         }
 
-        public static Dictionary<Coins, int> TotalCoins
+        public static Dictionary<Denominations, int> TotalCoins
         {
             get
             {
-                if (Get<Dictionary<Coins, int>>(SessionConstants.TotalCoins) == null)
+                if (Get<Dictionary<Denominations, int>>(SessionConstants.TotalCoins) == null)
                 {
-                    Set(SessionConstants.TotalCoins, InitializeDictionary<Coins>(0));
+                    Set(SessionConstants.TotalCoins, InitializeDictionary<Denominations>(0));
                 }
 
-                return Get<Dictionary<Coins, int>>(SessionConstants.TotalCoins);
+                return Get<Dictionary<Denominations, int>>(SessionConstants.TotalCoins);
             }
 
         }
