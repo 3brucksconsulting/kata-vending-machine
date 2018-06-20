@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.UI", "VendingMachine.UI\VendingMachine.UI.csproj", "{43B016B3-2D35-42DF-A983-E88FFA668667}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Services", "VendingMachine.Services\VendingMachine.Services.csproj", "{21CDD928-DFBC-4B03-A8D0-CF9CB0A2BA06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{81FE7C54-3C36-4B9B-B6A3-455A238825E9}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43B016B3-2D35-42DF-A983-E88FFA668667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43B016B3-2D35-42DF-A983-E88FFA668667}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43B016B3-2D35-42DF-A983-E88FFA668667}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43B016B3-2D35-42DF-A983-E88FFA668667}.Release|Any CPU.Build.0 = Release|Any CPU
 		{21CDD928-DFBC-4B03-A8D0-CF9CB0A2BA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21CDD928-DFBC-4B03-A8D0-CF9CB0A2BA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CDD928-DFBC-4B03-A8D0-CF9CB0A2BA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
