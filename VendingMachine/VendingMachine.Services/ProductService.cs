@@ -13,7 +13,7 @@ namespace VendingMachine.Services
         {
             var message = CheckInventory(product);
 
-            if (message != MessageConstants.SoldOut)
+            if (message == string.Empty)
             {
                 message = CheckCoins(product);
             }
